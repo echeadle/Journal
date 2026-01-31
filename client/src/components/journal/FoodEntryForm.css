@@ -1,0 +1,78 @@
+.food-entry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.food-entry-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.food-entry-form__label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4A4A4A;
+}
+
+.food-entry-form__input,
+.food-entry-form__select,
+.food-entry-form__textarea {
+  padding: 12px 16px;
+  border: 2px solid #E5E5E5;
+  border-radius: 12px;
+  font-size: 16px;
+  font-family: inherit;
+  transition: all 250ms ease-in-out;
+  background: white;
+  color: #4A4A4A;
+}
+
+.food-entry-form__input:focus,
+.food-entry-form__select:focus,
+.food-entry-form__textarea:focus {
+  outline: none;
+  border-color: #FFB347;
+  box-shadow: 0 0 0 3px rgba(255, 179, 71, 0.1);
+}
+
+.food-entry-form__input::placeholder,
+.food-entry-form__textarea::placeholder {
+  color: #999;
+}
+
+.food-entry-form__textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.food-entry-form__select {
+  cursor: pointer;
+}
+
+.food-entry-form__checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.food-entry-form__checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #4A4A4A;
+}
+
+.food-entry-form__checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #FFB347;
+}
+
+.food-entry-form__checkbox span {
+  user-select: none;
+}

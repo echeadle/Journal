@@ -1,0 +1,191 @@
+.dashboard {
+  min-height: 100vh;
+  background: #FFF8F0;
+  padding: 24px;
+}
+
+.dashboard__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.dashboard__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.dashboard__title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #4A4A4A;
+  margin-bottom: 4px;
+}
+
+.dashboard__subtitle {
+  font-size: 16px;
+  color: #6B6B6B;
+}
+
+.dashboard__actions {
+  display: flex;
+  gap: 12px;
+}
+
+.dashboard__stats {
+  background: linear-gradient(135deg, #FFB347 0%, #FFA07A 100%);
+  color: white;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 24px;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat__value {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.stat__label {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.dashboard__days {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.day-card {
+  cursor: pointer;
+  transition: all 250ms ease-in-out;
+  border: 3px solid transparent;
+}
+
+.day-card:hover {
+  border-color: #FFB347;
+}
+
+.day-card--today {
+  border-color: #87CEEB;
+  box-shadow: 0 8px 16px rgba(135, 206, 235, 0.2);
+}
+
+.day-card--completed {
+  background: linear-gradient(to bottom right, white 0%, #E8F8E8 100%);
+}
+
+.day-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.day-card__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #4A4A4A;
+  margin-bottom: 4px;
+}
+
+.day-card__date {
+  font-size: 14px;
+  color: #6B6B6B;
+}
+
+.day-card__badge {
+  padding: 4px 12px;
+  background: #87CEEB;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 999px;
+}
+
+.day-card__progress {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.progress-bar {
+  height: 8px;
+  background: #E5E5E5;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-bar__fill {
+  height: 100%;
+  background: linear-gradient(to right, #32CD32, #98D8C8);
+  border-radius: 999px;
+  transition: width 350ms ease-in-out;
+}
+
+.progress-text {
+  font-size: 14px;
+  color: #6B6B6B;
+  font-weight: 500;
+}
+
+.day-card__checkins {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.checkin-indicator {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: 600;
+  background: #F5F5F5;
+  color: #999;
+  transition: all 250ms ease-in-out;
+}
+
+.checkin-indicator--completed {
+  background: #32CD32;
+  color: white;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #4A4A4A;
+}
+
+@media (max-width: 768px) {
+  .dashboard__header {
+    flex-direction: column;
+  }
+
+  .dashboard__title {
+    font-size: 24px;
+  }
+
+  .dashboard__days {
+    grid-template-columns: 1fr;
+  }
+}

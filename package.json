@@ -1,0 +1,16 @@
+{
+  "name": "health-journal",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "install:all": "npm install && cd client && npm install && cd ../server && npm install",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npm run dev",
+    "dev": "npm run dev:client & npm run dev:server",
+    "build": "cd client && npm run build"
+  }
+}

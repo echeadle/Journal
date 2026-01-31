@@ -1,0 +1,120 @@
+.energy-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.energy-selector__section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.energy-selector__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #4A4A4A;
+}
+
+.energy-slider {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.energy-slider__input {
+  width: 100%;
+  height: 8px;
+  background: transparent;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Webkit (Chrome, Safari, Edge) */
+.energy-slider__input::-webkit-slider-track {
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(to right, #FF6347 0%, #FFA500 25%, #FFD700 50%, #98D8C8 75%, #32CD32 100%);
+  cursor: pointer;
+}
+
+.energy-slider__input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 150ms ease-in-out;
+  margin-top: -10px;
+}
+
+.energy-slider__input::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Firefox */
+.energy-slider__input::-moz-range-track {
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(to right, #FF6347 0%, #FFA500 25%, #FFD700 50%, #98D8C8 75%, #32CD32 100%);
+  cursor: pointer;
+}
+
+.energy-slider__input::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 150ms ease-in-out;
+}
+
+.energy-slider__input::-moz-range-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.energy-slider__labels {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 4px;
+}
+
+.energy-slider__label {
+  font-size: 24px;
+}
+
+.energy-selector__label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4A4A4A;
+}
+
+.energy-selector__textarea {
+  padding: 12px 16px;
+  border: 2px solid #E5E5E5;
+  border-radius: 12px;
+  font-size: 16px;
+  font-family: inherit;
+  resize: vertical;
+  transition: all 250ms ease-in-out;
+}
+
+.energy-selector__textarea:focus {
+  outline: none;
+  border-color: #98D8C8;
+  box-shadow: 0 0 0 3px rgba(152, 216, 200, 0.1);
+}
+
+.energy-selector__textarea::placeholder {
+  color: #999;
+}
