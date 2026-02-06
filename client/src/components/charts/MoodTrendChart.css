@@ -1,0 +1,55 @@
+.mood-trend-chart {
+  width: 100%;
+  padding: 16px 0;
+}
+
+.chart-empty {
+  padding: 48px 24px;
+  text-align: center;
+  color: #6B6B6B;
+  background: #f9f9f9;
+  border-radius: 12px;
+}
+
+.chart-empty p:first-child {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.chart-empty p:last-child {
+  font-size: 14px;
+  color: #999;
+}
+
+.chart-tooltip {
+  background: white;
+  border: 1px solid #E5E5E5;
+  border-radius: 8px;
+  padding: 12px 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.chart-tooltip__title {
+  font-weight: 600;
+  color: #4A4A4A;
+  margin: 0 0 4px 0;
+}
+
+.chart-tooltip__date {
+  font-size: 12px;
+  color: #6B6B6B;
+  margin: 0 0 8px 0;
+}
+
+.chart-tooltip__value {
+  font-size: 16px;
+  color: #FFB347;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+}
+
+.chart-tooltip__detail {
+  font-size: 12px;
+  color: #999;
+  margin: 0;
+}

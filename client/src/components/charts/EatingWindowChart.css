@@ -1,0 +1,42 @@
+.eating-window-chart {
+  width: 100%;
+  padding: 16px 0;
+}
+
+.chart-tooltip__meals {
+  margin: 8px 0;
+  padding: 8px;
+  background: #f9f9f9;
+  border-radius: 6px;
+}
+
+.chart-tooltip__meals p {
+  margin: 2px 0;
+  font-size: 13px;
+  color: #4A4A4A;
+}
+
+.chart-tooltip__value--window {
+  color: #98D8C8;
+}
+
+.eating-window-chart__legend {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #6B6B6B;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+}

@@ -1,0 +1,8 @@
+.energy-pattern-chart {
+  width: 100%;
+  padding: 16px 0;
+}
+
+.chart-tooltip__value--energy {
+  color: #32CD32;
+}

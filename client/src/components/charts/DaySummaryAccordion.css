@@ -1,0 +1,232 @@
+.day-summary-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.day-summary-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 250ms ease-in-out;
+}
+
+.day-summary-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.day-summary-card--expanded {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.day-summary-card__header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 150ms ease-in-out;
+}
+
+.day-summary-card__header:hover {
+  background: #f9f9f9;
+}
+
+.day-summary-card__title {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 100px;
+}
+
+.day-summary-card__day {
+  font-weight: 600;
+  color: #4A4A4A;
+  font-size: 16px;
+}
+
+.day-summary-card__date {
+  font-size: 12px;
+  color: #6B6B6B;
+}
+
+.day-summary-card__stats {
+  display: flex;
+  gap: 12px;
+  flex: 1;
+}
+
+.day-summary-card__stat {
+  padding: 4px 10px;
+  background: #f5f5f5;
+  border-radius: 16px;
+  font-size: 14px;
+  color: #4A4A4A;
+}
+
+.day-summary-card__progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 100px;
+}
+
+.day-summary-card__progress-bar {
+  flex: 1;
+  height: 6px;
+  background: #E5E5E5;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.day-summary-card__progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #FFB347, #98D8C8);
+  border-radius: 3px;
+  transition: width 300ms ease-in-out;
+}
+
+.day-summary-card__progress-text {
+  font-size: 12px;
+  color: #6B6B6B;
+  min-width: 36px;
+  text-align: right;
+}
+
+.day-summary-card__chevron {
+  font-size: 12px;
+  color: #6B6B6B;
+  transition: transform 250ms ease-in-out;
+}
+
+.day-summary-card__chevron--up {
+  transform: rotate(180deg);
+}
+
+.day-summary-card__content {
+  padding: 0 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-top: 1px solid #E5E5E5;
+  margin-top: 0;
+  padding-top: 16px;
+}
+
+.day-summary-card__label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #6B6B6B;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.day-summary-card__descriptors {
+  margin-bottom: 8px;
+}
+
+.day-summary-card__descriptor-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.day-summary-card__descriptor {
+  padding: 6px 12px;
+  background: #f5f5f5;
+  border-radius: 16px;
+  font-size: 13px;
+  color: #4A4A4A;
+}
+
+.day-summary-card__slots {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 8px;
+}
+
+.day-summary-card__slot {
+  padding: 10px 12px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border-left: 3px solid #E5E5E5;
+}
+
+.day-summary-card__slot--complete {
+  border-left-color: #98D8C8;
+  background: #f0faf8;
+}
+
+.day-summary-card__slot-label {
+  display: block;
+  font-size: 12px;
+  color: #6B6B6B;
+  margin-bottom: 4px;
+}
+
+.day-summary-card__slot-data {
+  display: flex;
+  gap: 12px;
+  font-size: 14px;
+  color: #4A4A4A;
+}
+
+.day-summary-card__slot-empty {
+  font-size: 12px;
+  color: #999;
+  font-style: italic;
+}
+
+.day-summary-card__food-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.day-summary-card__food-item {
+  padding: 10px 12px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.day-summary-card__food-type {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4A4A4A;
+}
+
+.day-summary-card__food-items {
+  font-size: 13px;
+  color: #6B6B6B;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .day-summary-card__header {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .day-summary-card__stats {
+    order: 3;
+    width: 100%;
+  }
+
+  .day-summary-card__progress {
+    min-width: 80px;
+  }
+
+  .day-summary-card__slots {
+    grid-template-columns: 1fr;
+  }
+}
