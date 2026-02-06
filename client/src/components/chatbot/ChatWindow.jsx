@@ -91,9 +91,9 @@ const ChatWindow = ({ onClose }) => {
           </div>
         )}
 
-        {messages.map((message, index) => (
+        {messages.map((message) => (
           <div
-            key={index}
+            key={message.id}
             className={`chat-message chat-message--${message.role}`}
           >
             <div className="chat-message__avatar">

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import storageService from '../services/storageService';
 
 const JournalContext = createContext(null);
@@ -12,7 +12,7 @@ export const JournalProvider = ({ children }) => {
     loadJournalData();
   }, []);
 
-  const loadJournalData = () => {
+  const loadJournalData = useCallback(() => {
     setLoading(true);
     const savedConfig = storageService.getConfig();
     const savedEntries = storageService.getAllEntries();
@@ -20,69 +20,69 @@ export const JournalProvider = ({ children }) => {
     setConfig(savedConfig);
     setEntries(savedEntries);
     setLoading(false);
-  };
+  }, []);
 
-  const createJournal = (duration) => {
+  const createJournal = useCallback((duration) => {
     const newConfig = storageService.createConfig(duration);
     const newEntries = storageService.getAllEntries();
 
     setConfig(newConfig);
     setEntries(newEntries);
     return newConfig;
-  };
+  }, []);
 
-  const deleteJournal = () => {
+  const deleteJournal = useCallback(() => {
     storageService.deleteConfig();
     setConfig(null);
     setEntries([]);
-  };
+  }, []);
 
-  const getEntry = (date) => {
+  const getEntry = useCallback((date) => {
     return storageService.getEntryByDate(date);
-  };
+  }, []);
 
-  const getEntryByDay = (dayNumber) => {
+  const getEntryByDay = useCallback((dayNumber) => {
     return storageService.getEntryByDayNumber(dayNumber);
-  };
+  }, []);
 
-  const addCheckIn = (entryId, checkInData) => {
+  const addCheckIn = useCallback((entryId, checkInData) => {
     const checkIn = storageService.addCheckIn(entryId, checkInData);
     loadJournalData();
     return checkIn;
-  };
+  }, [loadJournalData]);
 
-  const updateCheckIn = (entryId, checkInId, updates) => {
+  const updateCheckIn = useCallback((entryId, checkInId, updates) => {
     const checkIn = storageService.updateCheckIn(entryId, checkInId, updates);
     loadJournalData();
     return checkIn;
-  };
+  }, [loadJournalData]);
 
-  const addFoodEntry = (entryId, foodData) => {
+  const addFoodEntry = useCallback((entryId, foodData) => {
     const foodEntry = storageService.addFoodEntry(entryId, foodData);
     loadJournalData();
     return foodEntry;
-  };
+  }, [loadJournalData]);
 
-  const updateFoodEntry = (entryId, foodEntryId, updates) => {
+  const updateFoodEntry = useCallback((entryId, foodEntryId, updates) => {
     const foodEntry = storageService.updateFoodEntry(entryId, foodEntryId, updates);
     loadJournalData();
     return foodEntry;
-  };
+  }, [loadJournalData]);
 
-  const deleteFoodEntry = (entryId, foodEntryId) => {
+  const deleteFoodEntry = useCallback((entryId, foodEntryId) => {
     storageService.deleteFoodEntry(entryId, foodEntryId);
     loadJournalData();
-  };
+  }, [loadJournalData]);
 
-  const getCompletionStats = () => {
+  const getCompletionStats = useCallback(() => {
     return storageService.getCompletionStats();
-  };
+  }, []);
 
-  const exportData = () => {
+  const exportData = useCallback(() => {
     return storageService.exportAllData();
-  };
+  }, []);
 
-  const value = {
+  const value = useMemo(() => ({
     config,
     entries,
     loading,
@@ -98,7 +98,23 @@ export const JournalProvider = ({ children }) => {
     getCompletionStats,
     exportData,
     refresh: loadJournalData
-  };
+  }), [
+    config,
+    entries,
+    loading,
+    createJournal,
+    deleteJournal,
+    getEntry,
+    getEntryByDay,
+    addCheckIn,
+    updateCheckIn,
+    addFoodEntry,
+    updateFoodEntry,
+    deleteFoodEntry,
+    getCompletionStats,
+    exportData,
+    loadJournalData
+  ]);
 
   return (
     <JournalContext.Provider value={value}>

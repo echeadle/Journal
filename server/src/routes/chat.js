@@ -3,6 +3,40 @@ import { sendMessage, streamMessage } from '../services/claudeService.js';
 
 const router = express.Router();
 
+// Validate and sanitize journalContext to prevent injection
+function sanitizeJournalContext(context) {
+  if (!context || typeof context !== 'object') {
+    return null;
+  }
+
+  const sanitized = {};
+
+  // Validate numeric fields with reasonable bounds
+  if (typeof context.currentDay === 'number' && context.currentDay >= 0 && context.currentDay <= 100) {
+    sanitized.currentDay = Math.floor(context.currentDay);
+  }
+  if (typeof context.totalDays === 'number' && context.totalDays >= 1 && context.totalDays <= 30) {
+    sanitized.totalDays = Math.floor(context.totalDays);
+  }
+  if (typeof context.completionPercentage === 'number' && context.completionPercentage >= 0 && context.completionPercentage <= 100) {
+    sanitized.completionPercentage = Math.round(context.completionPercentage);
+  }
+
+  // Validate string arrays (limit size to prevent abuse)
+  if (Array.isArray(context.completedCheckIns)) {
+    sanitized.completedCheckIns = context.completedCheckIns
+      .filter(item => typeof item === 'string')
+      .slice(0, 50);
+  }
+  if (Array.isArray(context.pendingCheckIns)) {
+    sanitized.pendingCheckIns = context.pendingCheckIns
+      .filter(item => typeof item === 'string')
+      .slice(0, 50);
+  }
+
+  return Object.keys(sanitized).length > 0 ? sanitized : null;
+}
+
 // POST /api/chat - Send a message to Claude
 router.post('/', async (req, res, next) => {
   try {
@@ -26,7 +60,8 @@ router.post('/', async (req, res, next) => {
       });
     }
 
-    const result = await sendMessage(message.trim(), journalContext);
+    const sanitizedContext = sanitizeJournalContext(journalContext);
+    const result = await sendMessage(message.trim(), sanitizedContext);
 
     res.json({
       success: true,
@@ -55,7 +90,8 @@ router.post('/stream', async (req, res, next) => {
     res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('Connection', 'keep-alive');
 
-    const stream = await streamMessage(message.trim(), journalContext);
+    const sanitizedContext = sanitizeJournalContext(journalContext);
+    const stream = await streamMessage(message.trim(), sanitizedContext);
 
     for await (const chunk of stream) {
       if (chunk.type === 'content_block_delta' && chunk.delta?.text) {

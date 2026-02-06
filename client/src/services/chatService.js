@@ -27,25 +27,25 @@ export async function sendChatMessage(message, journalContext = null) {
 }
 
 export async function* streamChatMessage(message, journalContext = null) {
+  const response = await fetch(`${API_BASE_URL}/chat/stream`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      message,
+      journalContext
+    })
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to start chat stream');
+  }
+
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder();
+
   try {
-    const response = await fetch(`${API_BASE_URL}/chat/stream`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        message,
-        journalContext
-      })
-    });
-
-    if (!response.ok) {
-      throw new Error('Failed to start chat stream');
-    }
-
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder();
-
     while (true) {
       const { value, done } = await reader.read();
       if (done) break;
@@ -73,5 +73,7 @@ export async function* streamChatMessage(message, journalContext = null) {
   } catch (error) {
     console.error('Chat stream error:', error);
     throw error;
+  } finally {
+    reader.releaseLock();
   }
 }
